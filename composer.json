@@ -1,0 +1,28 @@
+{
+  "name":  "oidc-wp/oidc-wp-roles",
+  "description": "Extension to oidc-wp/openid-connect-generic plugin that maps 3rd party service data as WordPress user data. Optionally restrict access to content.",
+  "type": "wordpress-plugin",
+  "authors": [
+    {
+      "name": "Jonathan Daggerhart",
+      "email": "jonathan@daggerhart.com"
+    }
+  ],
+  "require": {
+	"php": ">=7.2.0",
+    "cmb2/cmb2": "^2.6",
+    "php-di/php-di": "^6.3",
+    "bradmkjr/monolog-wordpress": "^2.1.0"
+  },
+  "require-dev": {
+	"symfony/var-dumper": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "OidcRoles\\": "src/"
+    },
+    "files": [
+      "vendor/cmb2/cmb2/init.php"
+    ]
+  }
+}
