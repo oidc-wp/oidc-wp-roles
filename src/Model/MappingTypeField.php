@@ -140,6 +140,10 @@ class MappingTypeField implements MappingTypeFieldInterface {
 		$mapping_result = $this->getMappingResult( $data );
 		if ( $mapping_result->success() ) {
 			$value = $this->getDataValue( $data );
+			if (is_null($value)) {
+				return FALSE;
+			}
+
 			switch ( $this->get( 'data_target' ) ) {
 				case 'user_property':
 					$update_result = wp_update_user( [

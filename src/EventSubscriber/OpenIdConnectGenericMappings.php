@@ -68,6 +68,15 @@ class OpenIdConnectGenericMappings {
 			'%user_id' => $user->ID,
 		] ) );
 
+		if ( empty( $token_response['access_token'] ) ) {
+			$this->logger->warning("User {$user->ID} does not have access_token from oidc.");
+			return;
+		}
+		if ( empty( $subject_identity ) ) {
+			$this->logger->warning("User {$user->ID} does not have subject_identity from oidc.");
+			return;
+		}
+
 		foreach ( $client_mappings_collections as $connection_name => $collection ) {
 			$client = $collection->getClient();
 			$client->setReplacements( [
