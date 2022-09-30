@@ -22,7 +22,12 @@ class DataFinder implements DataFinderInterface {
 			$part = array_shift( $parts );
 			if ( isset( $value[ $part ] ) ) {
 				$value = $value[ $part ];
+				continue;
 			}
+
+			// If we found something that isn't an array, then that's as close as
+			// we can get to the value.
+			break;
 		}
 
 		// If the $parts array is empty, then we found the path value.
