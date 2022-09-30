@@ -20,7 +20,7 @@ class DataFinder implements DataFinderInterface {
 		$value = $data;
 		while ( !empty( $parts ) ) {
 			$part = array_shift( $parts );
-			if ( isset( $value[ $part ] ) ) {
+			if ( is_array( $value ) && isset( $value[ $part ] ) ) {
 				$value = $value[ $part ];
 				continue;
 			}

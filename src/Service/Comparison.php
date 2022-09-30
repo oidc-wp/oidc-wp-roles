@@ -83,6 +83,11 @@ class Comparison implements ComparisonInterface {
 	 * {@inheritdoc}
 	 */
 	public static function compareValues( $test_value, string $operator, $comparison_value ) {
+		// Only care about strings, ints, floats.
+		if ( !is_string( $test_value ) || !is_numeric( $test_value ) ) {
+			return FALSE;
+		}
+
 		switch ( $operator ) {
 			case '===':
 				return $test_value === $comparison_value;

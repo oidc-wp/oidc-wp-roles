@@ -133,7 +133,7 @@ class MappingTypeRole implements MappingTypeRoleInterface {
 			$traversing = $this->dataFinder->getComparisonRow( $traversing, $this->get( 'response_data_row_key' ), $this->get( 'response_data_row_value' ) );
 		}
 
-		return $this->dataFinder->getPathValue( $traversing, $this->get( 'test_value_key' ) );
+		return $this->dataFinder->getPathValue( $traversing ?? [], $this->get( 'test_value_key' ) );
 	}
 
 	/**
