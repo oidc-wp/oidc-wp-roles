@@ -76,7 +76,7 @@ class Comparison implements ComparisonInterface {
 	 */
 	public function getComparisonResult( $test_value, string $operator, $comparison_value ) {
 		$value = $this->isStrictOperator( $operator ) ? $this->getStrictComparisonValue( $comparison_value ) : $comparison_value;
-		return new MappingComparisonResult( $test_value, $operator, $value, $this->compare( $test_value, $operator, $comparison_value ) );
+		return new MappingComparisonResult( $test_value, $operator, $value, $this->compare( $test_value, $operator, $value ) );
 	}
 
 	/**
@@ -84,7 +84,7 @@ class Comparison implements ComparisonInterface {
 	 */
 	public static function compareValues( $test_value, string $operator, $comparison_value ) {
 		// Only care about strings, ints, floats.
-		if ( !is_string( $test_value ) || !is_numeric( $test_value ) ) {
+		if ( !is_bool( $test_value ) && !is_string( $test_value ) && !is_numeric( $test_value ) ) {
 			return FALSE;
 		}
 

@@ -122,7 +122,7 @@ class MappingTypeField implements MappingTypeFieldInterface {
 		$value = $this->getDataValue( $data );
 
 		// Only care about strings, ints, floats.
-		if ( !is_string( $value ) || !is_numeric( $value ) ) {
+		if ( !is_string( $value ) && !is_numeric( $value ) && !is_bool( $value ) ) {
 			return new MappingResult( false, strtr( __( 'Field mapping failed to find the value_key %value_key in the response.', 'oidc-wp-roles' ), [
 				'%value_key' => '<code>' . $this->get( 'value_key' ) . '</code>',
 			] ) );
