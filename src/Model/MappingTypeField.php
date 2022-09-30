@@ -121,7 +121,8 @@ class MappingTypeField implements MappingTypeFieldInterface {
 	public function getMappingResult( array $data ) {
 		$value = $this->getDataValue( $data );
 
-		if ( is_null( $value ) ) {
+		// Only care about strings, ints, floats.
+		if ( !is_string( $value ) || !is_numeric( $value ) ) {
 			return new MappingResult( false, strtr( __( 'Field mapping failed to find the value_key %value_key in the response.', 'oidc-wp-roles' ), [
 				'%value_key' => '<code>' . $this->get( 'value_key' ) . '</code>',
 			] ) );
@@ -140,9 +141,6 @@ class MappingTypeField implements MappingTypeFieldInterface {
 		$mapping_result = $this->getMappingResult( $data );
 		if ( $mapping_result->success() ) {
 			$value = $this->getDataValue( $data );
-			if (is_null($value)) {
-				return FALSE;
-			}
 
 			switch ( $this->get( 'data_target' ) ) {
 				case 'user_property':
